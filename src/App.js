@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Main } from './components/Main';
 import { TextInput } from './components/TextInput';
@@ -9,6 +9,10 @@ import { getAgeFrom } from './helpers/dateHelpers';
 export default function App() {
   const [name, setName] = useState('Julia');
   const [birthDate, setBirthDate] = useState('1997-04-08');
+
+  useEffect(() => {
+    document.title = name;
+  }, [name]);
 
   function handleNameChange(newName) {
     setName(newName);
