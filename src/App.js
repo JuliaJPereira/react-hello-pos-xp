@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Main } from './components/Main';
 import { TextInput } from './components/TextInput';
 import { DateInput } from './components/DateInput';
+import { getAgeFrom } from './helpers/dateHelpers';
 // import { Test } from './components/Test';
 
 export default function App() {
@@ -34,8 +35,8 @@ export default function App() {
         />
         <p>
           {/* usamos chaves para inserir variáveis no JSX */}
-          Seu nome é {name}, seu nome possui {name.length} letras e sua idade é
-          26 anos.
+          Seu nome é {name}, seu nome possui {name.length} letras e sua idade é{' '}
+          {getAgeFrom(birthDate)} anos.
         </p>
       </Main>
     </>
