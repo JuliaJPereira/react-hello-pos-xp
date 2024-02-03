@@ -24,11 +24,14 @@ export default function App() {
       <Header size="large">Componete Header - Projeto react-hello</Header>
       <Main>
         <TextInput
+          id="textInput"
           labelDescription="Digite seu nome:"
           inputValue={name}
           onInputChange={handleNameChange}
+          autoFocus
         />
         <DateInput
+          id="dateInput"
           labelDescription="Digite sua data de nascimento:"
           inputValue={birthDate}
           onInputChange={handleBirthDateChange}
