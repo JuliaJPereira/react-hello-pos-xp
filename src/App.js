@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import { Header } from './components/Header';
 import { Main } from './components/Main';
+import { TextInput } from './components/TextInput';
+import { DateInput } from './components/DateInput';
 // import { Test } from './components/Test';
 
 export default function App() {
   const [name, setName] = useState('Julia');
+  const [birthDate, setBirthDate] = useState('1997-04-08');
 
-  // uma função dentro de outra é chamada de closure no React
-  function handleNameChange(event) {
-    const newName = event.target.value;
+  function handleNameChange(newName) {
     setName(newName);
+  }
+
+  function handleBirthDateChange(newBirthDate) {
+    setBirthDate(newBirthDate);
   }
 
   return (
@@ -17,18 +22,16 @@ export default function App() {
     <>
       <Header size="large">Componete Header - Projeto react-hello</Header>
       <Main>
-        <div className="flex flex-col my-4">
-          <label className="text-sm mb-1" htmlFor="inputName">
-            Digite seu nome:
-          </label>
-          <input
-            autoFocus
-            id="inputName"
-            className="border p-1"
-            type="text"
-            onChange={handleNameChange}
-          />
-        </div>
+        <TextInput
+          labelDescription="Digite seu nome:"
+          inputValue={name}
+          onInputChange={handleNameChange}
+        />
+        <DateInput
+          labelDescription="Digite sua data de nascimento:"
+          inputValue={birthDate}
+          onInputChange={handleBirthDateChange}
+        />
         <p>
           {/* usamos chaves para inserir variáveis no JSX */}
           Seu nome é {name}, seu nome possui {name.length} letras e sua idade é
