@@ -6,16 +6,34 @@ import { DateInput } from './components/DateInput';
 import { getAgeFrom } from './helpers/dateHelpers';
 import { Timer } from './components/Timer';
 import { CheckboxInput } from './components/CheckboxInput';
+import { OnlineOffline } from './components/OnlineOffline';
 // import { Test } from './components/Test';
 
 export default function App() {
   const [name, setName] = useState('Julia');
   const [birthDate, setBirthDate] = useState('1997-04-08');
   const [showTimer, setShowTimer] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
     document.title = name;
   }, [name]);
+
+  useEffect(() => {
+    function toogleOnline() {
+      setIsOnline(true);
+    }
+
+    function toogleOffline() {
+      setIsOnline(false);
+    }
+    window.addEventListener('online', toogleOnline);
+    window.addEventListener('offline', toogleOffline);
+    return () => {
+      window.removeEventListener('online', toogleOnline);
+      window.removeEventListener('offline', toogleOffline);
+    };
+  }, []);
 
   function handleNameChange(newName) {
     setName(newName);
@@ -30,10 +48,10 @@ export default function App() {
   }
 
   return (
-    // React só pode retornar um elemento, então usamos um fragmento para englobar os dois elementos que queremos retornar.
     <>
       <Header size="large">Componete Header - Projeto react-hello</Header>
       <Main>
+        <OnlineOffline isOnline={isOnline} />
         {showTimer && (
           <div className="text-right mt-1">
             <Timer />
